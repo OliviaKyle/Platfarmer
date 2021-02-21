@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://imgbin-pixel-art-game-sprite-8-bit-pixelated-illustration-of-ground-with-grass-XabVJLLurQ2PQ2BiG84HBeUAW.jpg" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[node name="Tile" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Tile" type="Sprite" parent="."]
+position = Vector2( 3.016e-05, 3.05176e-05 )
+scale = Vector2( 0.262657, 0.508982 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 3
+frame = 7
