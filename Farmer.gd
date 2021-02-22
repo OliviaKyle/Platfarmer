@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 signal fell
 signal died
 
@@ -10,15 +11,15 @@ var jumpForce = 800
 var gravity = 1800
 var screen_size
 var velocity = Vector2()
-var grounded = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	emit_signal("fell")
 
 func _physics_process(delta):
 	if is_on_floor():
 		velocity.x = 0
-
+	
 	if Input.is_action_pressed ("move_right") and is_on_floor():
 		velocity.x += speed
 	if Input.is_action_pressed("move_left") and is_on_floor():
@@ -39,6 +40,7 @@ func _physics_process(delta):
 		$AnimatedSprite.animation = "Idle"
 	
 	if position.y > screen_size.y:
+		print("here")
 		lives -= 1
 		if lives < 1:
 			emit_signal("died")
@@ -47,4 +49,3 @@ func _physics_process(delta):
 
 func start(pos):
 	position = pos
-
