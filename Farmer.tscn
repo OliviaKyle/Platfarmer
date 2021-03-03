@@ -1,34 +1,105 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Player Side Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Farmer.gd" type="Script" id=2]
+[ext_resource path="res://Player Angle 1 Sheet.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 48, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 96, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 144, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 192, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 240, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 288, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 336, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 384, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 432, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 480, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 528, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 576, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 624, 176, 48, 44 )
+
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 48, 44 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 48, 44 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 48, 44 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 144, 0, 48, 44 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 48, 44 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 240, 0, 48, 44 )
@@ -75,7 +146,17 @@ region = Rect2( 336, 44, 48, 44 )
 
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"frames": [  ],
+"loop": true,
+"name": "LadderUp",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": false,
+"name": "Death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
@@ -86,7 +167,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 16.4708, 30.3325 )
 
 [node name="Farmer" type="KinematicBody2D"]
@@ -94,16 +175,16 @@ position = Vector2( 2.24746, 0 )
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+pause_mode = 2
 scale = Vector2( 2, 2 )
 frames = SubResource( 15 )
-animation = "Idle"
-frame = 2
+animation = "LadderUp"
 speed_scale = 2.0
 playing = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -1.49831, 6.66743 )
-shape = SubResource( 22 )
+shape = SubResource( 16 )
 __meta__ = {
 "_edit_group_": true
 }

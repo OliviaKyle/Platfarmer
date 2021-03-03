@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SkyWithClouds.jpg" type="Texture" id=1]
 [ext_resource path="res://Background 2.gd" type="Script" id=2]
@@ -7,19 +7,32 @@
 [ext_resource path="res://Farmer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Tile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Heart.tscn" type="PackedScene" id=8]
+[ext_resource path="res://CameraController.gd" type="Script" id=9]
 
 [node name="Main" type="Node"]
 script = ExtResource( 4 )
 Farmer = ExtResource( 5 )
 
 [node name="Background 1" type="Sprite" parent="."]
+pause_mode = 2
+position = Vector2( -1025.89, 0 )
+scale = Vector2( 1.92, 2.135 )
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 3 )
+
+[node name="Background 3" type="Sprite" parent="."]
+pause_mode = 2
+position = Vector2( 1938.15, 0 )
 scale = Vector2( 1.92, 2.135 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 3 )
 
 [node name="Background 2" type="Sprite" parent="."]
-position = Vector2( 1507, 0 )
+pause_mode = 2
+position = Vector2( 468.389, 0 )
 scale = Vector2( 1.92, 2.135 )
 texture = ExtResource( 1 )
 centered = false
@@ -31,6 +44,12 @@ position = Vector2( 16, 784 )
 
 [node name="Tile" parent="." instance=ExtResource( 6 )]
 position = Vector2( 30, 882 )
+
+[node name="Tile14" parent="." instance=ExtResource( 6 )]
+position = Vector2( 416, 608 )
+
+[node name="Tile15" parent="." instance=ExtResource( 6 )]
+position = Vector2( 480, 608 )
 
 [node name="Tile2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 94, 882 )
@@ -53,6 +72,18 @@ position = Vector2( 672, 736 )
 [node name="Tile9" parent="." instance=ExtResource( 6 )]
 position = Vector2( 800, 736 )
 
+[node name="Tile10" parent="." instance=ExtResource( 6 )]
+position = Vector2( 928, 608 )
+
+[node name="Tile11" parent="." instance=ExtResource( 6 )]
+position = Vector2( 992, 608 )
+
+[node name="Tile12" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1184, 744 )
+
+[node name="Tile13" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1323.24, 651.038 )
+
 [node name="Tile5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 416, 800 )
 
@@ -60,4 +91,19 @@ position = Vector2( 416, 800 )
 position = Vector2( 16, 792 )
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[node name="Heart" parent="." instance=ExtResource( 8 )]
+position = Vector2( 799.1, 674.544 )
+
+[node name="Heart3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 447.781, 532.576 )
+
+[node name="Heart2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1184.74, 681.961 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 800.954, 491.591 )
+current = true
+script = ExtResource( 9 )
+[connection signal="died" from="Farmer" to="." method="game_over"]
 [connection signal="fell" from="Farmer" to="." method="restart"]

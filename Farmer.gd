@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 signal fell
 signal died
+signal create_ladder
 
 var lives = 3
 
@@ -11,6 +12,8 @@ var jumpForce = 800
 var gravity = 1800
 var screen_size
 var velocity = Vector2()
+
+onready var hud = get_node("/root/Main/HUD")
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -24,6 +27,10 @@ func _physics_process(delta):
 		velocity.x += speed
 	if Input.is_action_pressed("move_left") and is_on_floor():
 		velocity.x -= speed
+	if Input.is_action_pressed("ladder_up") and is_on_floor():
+		emit_signal("create_ladder")
+	if Input.is_action_pressed("ladder_down") and is_on_floor():
+		pass
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity.y += gravity * delta
@@ -40,12 +47,18 @@ func _physics_process(delta):
 		$AnimatedSprite.animation = "Idle"
 	
 	if position.y > screen_size.y:
-		print("here")
 		lives -= 1
+		hud.set_lives_text(lives)
 		if lives < 1:
 			emit_signal("died")
+			get_tree().paused = true
+			$AnimatedSprite.animation = "Death"
 		else:
 			emit_signal("fell")
+
+func collect_life (value):
+	lives += value
+	hud.set_lives_text(lives)
 
 func start(pos):
 	position = pos
